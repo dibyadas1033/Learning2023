@@ -1,54 +1,66 @@
 #include<stdio.h>
-#include <stdlib.h>
 #include<string.h>
-int days_Elapsed(int,int,int);
-int check_leapYear(int);
+#include<stdlib.h>
+void left_Rotate(char *,int,int);
+void right_Rotate(char *,int,int);
 int main()
 {
-    char str[100];
-    int dd,mm,yy,res;
-    printf("Enter date (dd/mm/yy) format: ");
-    scanf("%s",str);
-    printf("entered date : %s\n",str);
-    // printf("%c\n",str[0]);
-    // strcat(&str[0],&str[1]);
-    // printf("%c\n",str[0]);
-    // while (str[i]!='\0')
-    // {
-    //        printf("%c",str[i++]);
-    // }
-    // printf("\n");
-    dd = atoi(str);
-    mm = atoi(str + 3);
-    yy = atoi(str + 6);
-    res = days_Elapsed(dd,mm,yy);
-    printf("Days Elapsed: %d\n",res);
-    return 0;
-}
-int days_Elapsed(int dd, int mm, int yy)
-{
-    int month[12]={31,28,31,30,31,30,31,31,30,31,30,31};
-    int s1=0,i=0;
-    while(i<mm-1)
+
+    char str[200];
+    int k,x;
+    while (1)
     {
-        if(i==1 && check_leapYear(yy)==1)
+        printf("\n Choice\n1- left Rotate\n2- right Rotate\n3- exit\n Enter your choice : ");
+        scanf("%d",&x);
+        switch (x)
         {
-            s1= s1 + 29;
-            // printf("\n%d --> %d \t ",i,s1);
-        }
-        else
-        {
-            s1= s1 + month[i];
-            // printf("\n%d --> %d \t ",i,s1);
-        }
-        i++;
+        case 1:
+            printf("Enter string: ");
+            scanf("%s", str);
+            printf("Enter K: ");
+            scanf("%d",&k);
+            left_Rotate(str,strlen(str),k);
+            break;
+        case 2:
+            printf("Enter string: ");
+            scanf("%s", str);
+            printf("Enter K: ");
+            scanf("%d",&k);
+            right_Rotate(str,strlen(str),k);
+            break;
+        case 3:
+            exit(0);
+            break;
         
+        default:
+            printf("invalid entry\n");
+            break;
+        }
     }
-    return (s1+dd);
+    
+   
+    
+    return 0;
 
 }
-int check_leapYear(int yy)
+void left_Rotate(char *str,int size,int k)
 {
-   return (((yy % 4 == 0) && (yy % 100 != 0)) ||
-        (yy % 400 == 0));
+    for (int i = 0; i < k; i++)
+    {
+        char temp = str[0];
+        for (int j = 0; j < size - 1; j++) 
+        {
+            str[j] = str[j + 1];
+        }
+        str[size - 1] = temp;
+    }
+    printf("Rotated string: %s\n", str);
+
+    
+
+}
+void right_Rotate(char *str,int size,int k)
+{
+   left_Rotate(str,size,size-1-k);
+    
 }

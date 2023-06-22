@@ -1,21 +1,54 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include<string.h>
-int calculateSecond(int,int,int);
+int days_Elapsed(int,int,int);
+int check_leapYear(int);
 int main()
 {
-    char str[200];
-    int hh,mm,ss,res;
-    printf("Enter time (HH:MM:SS) format: ");
-    scanf("%s", str);
-    printf("time entered : %s\n",str);
-    hh = atoi(str);
+    char str[100];
+    int dd,mm,yy,res;
+    printf("Enter date (dd/mm/yy) format: ");
+    scanf("%s",str);
+    printf("entered date : %s\n",str);
+    // printf("%c\n",str[0]);
+    // strcat(&str[0],&str[1]);
+    // printf("%c\n",str[0]);
+    // while (str[i]!='\0')
+    // {
+    //        printf("%c",str[i++]);
+    // }
+    // printf("\n");
+    dd = atoi(str);
     mm = atoi(str + 3);
-    ss = atoi(str + 6);             
-    res = calculateSecond(hh,mm,ss); 
-    printf("time in Seconds:%d\n",res);
+    yy = atoi(str + 6);
+    res = days_Elapsed(dd,mm,yy);
+    printf("Days Elapsed: %d\n",res);
+    return 0;
 }
-int calculateSecond(int hh,int mm,int ss)
+int days_Elapsed(int dd, int mm, int yy)
 {
-    return (hh*3600 + mm*60 + ss);
+    int month[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+    int s1=0,i=0;
+    while(i<mm-1)
+    {
+        if(i==1 && check_leapYear(yy)==1)
+        {
+            s1= s1 + 29;
+            // printf("\n%d --> %d \t ",i,s1);
+        }
+        else
+        {
+            s1= s1 + month[i];
+            // printf("\n%d --> %d \t ",i,s1);
+        }
+        i++;
+        
+    }
+    return (s1+dd);
+
+}
+int check_leapYear(int yy)
+{
+   return (((yy % 4 == 0) && (yy % 100 != 0)) ||
+        (yy % 400 == 0));
 }

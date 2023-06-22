@@ -1,24 +1,20 @@
-#include <stdio.h>
+#include<stdio.h>
 #include <stdlib.h>
-  
 int main()
 {
     char str[100];
-    int i=0;
-    printf("Enter the string:");
+    int res,num=0,i=0;
+    printf("Enter a string: ");
     scanf("%s",str);
-    int n1 = atoi(str);
-  
-    printf("output:%d\n", n1);
-    int n = 0;
-  
-    // converting string to number
-    for (int i = 0; str[i] != '\0'; i++) {
-        n = n * 10 + (str[i] - 48);
-    }
-    printf("output using loops :%d\n", n);
+    res = atoi(str); // ** atoi --> converts string to integer
+    printf("output is: %d \n", res);
 
- 
-  
-    return 0;
+    //loops using asci value
+    while (str[i]!='\0')
+    {
+        num = num*10+(str[i]-48);
+        i++;
+    }
+    printf("output(using For Loops) is: %d \n", num);
+    
 }
