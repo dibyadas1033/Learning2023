@@ -1,5 +1,6 @@
 # Learning2023
-## MODULE 1- 
+### MODULE 01
+-----------------------------------------------------------------------------
 #### Day 01 - Language Basics, Operators and Control Flow
 #### Day 02 - Pointers
 #### Day 03 - Functions 
